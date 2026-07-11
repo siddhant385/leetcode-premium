@@ -1,5 +1,5 @@
 # Base image
-FROM node:18-alpine
+FROM node:alpine
 
 # Set working directory
 WORKDIR /app
@@ -11,7 +11,7 @@ RUN npm install -g pnpm
 COPY package.json pnpm-lock.yaml ./
 
 # Dependencies install karo (--frozen-lockfile exact versions install karta hai)
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --config.strict-dep-builds=false --frozen-lockfile 
 
 # Baaki saara code copy karo
 COPY . .
